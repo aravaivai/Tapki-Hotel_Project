@@ -22,10 +22,12 @@ export default function LoginPage() {
       .select('*')
       .eq('Login', login)
       .eq('Password', password)
+      .eq('Role', 'Гость')
       .single()
 
     if (data) {
-      alert(`Добро пожаловать, ${data.FullName}! Ваша роль: ${data.Role}`)
+      localStorage.setItem('user', JSON.stringify(data));
+      window.location.href = '/GuestPage';
     } else {
       alert('Неверный логин или пароль')
     }
@@ -44,19 +46,19 @@ export default function LoginPage() {
               placeholder="Логин"
               value={login}
               onChange={(e) => setLogin(e.target.value)}
-              className="outline-none focus:border-blue-500 p-2 border border-gray-300 rounded-lg transition-colors ease-in-out duration-300"
+              className="outline-none focus:border-blue-500 focus:scale-110 p-2 border border-gray-300 rounded-lg transition-all ease-in-out duration-300"
             />
             <input
               type={showPassword ? 'text' : 'password'}
               placeholder="Пароль"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="outline-none focus:border-blue-500 p-2 border border-gray-300 rounded-lg pr-10 mr-10 transition-colors ease-in-out duration-300"
+              className="outline-none focus:border-blue-500 focus:scale-105 p-2 border border-gray-300 rounded-lg pr-10 transition-all ease-in-out duration-300"
             />
             <button
               type="button"
               onClick={togglePasswordVisibility}
-              className="absolute top-46 right-7 transform translate-y-[-50%] bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
+              className="absolute top-46 right-10 transform translate-y-[-50%] bg-none p-1 hover:bg-gray-200/15 rounded-lg"
             >
               {showPassword ? '🙈' : '👁️'}
             </button>

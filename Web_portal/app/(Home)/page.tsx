@@ -19,7 +19,7 @@ export default function WelcomePage() {
   return (
     <div className="flex flex-col min-h-screen">
 
-      <Header showLogin showProfile />
+      <Header showLogin/>
 
       <main className="grow">
 
