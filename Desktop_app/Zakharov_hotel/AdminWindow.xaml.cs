@@ -156,15 +156,6 @@ namespace Zakharov_hotel
                     MessageBox.Show("Ошибка: " + ex.Message);
                 }
             }
-
-            /*if (dgRoomsAdmin.SelectedItem is DataRowView row)
-            {
-                txtRoomName.Text = GetVal(row, "roomname");
-                txtRoomCap.Text = GetVal(row, "capacity");
-                txtRoomPrice.Text = GetVal(row, "price");
-
-                cmbRoomEmployee.SelectedValue = GetVal(row, "employeeid");
-            }*/
         }
 
         private void BtnAddRoom_Click(object sender, RoutedEventArgs e)

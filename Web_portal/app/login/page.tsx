@@ -46,14 +46,14 @@ export default function LoginPage() {
               placeholder="Логин"
               value={login}
               onChange={(e) => setLogin(e.target.value)}
-              className="outline-none focus:border-blue-500 focus:scale-110 p-2 border border-gray-300 rounded-lg transition-all ease-in-out duration-300"
+              className="bg-gray-900 outline-none focus:border-blue-500 focus:scale-110 p-2 border border-gray-300 rounded-lg transition-all ease-in-out duration-300"
             />
             <input
               type={showPassword ? 'text' : 'password'}
               placeholder="Пароль"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="outline-none focus:border-blue-500 focus:scale-105 p-2 border border-gray-300 rounded-lg pr-10 transition-all ease-in-out duration-300"
+              className="bg-gray-900 outline-none focus:border-blue-500 focus:scale-105 p-2 border border-gray-300 rounded-lg pr-10 transition-all ease-in-out duration-300"
             />
             <button
               type="button"

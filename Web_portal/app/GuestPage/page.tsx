@@ -9,7 +9,7 @@ import { createClient } from '../supabase'
 export default function GuestPage() {
     return (
         <div className="flex flex-col h-screen bg-white">
-            <Header showProfile />
+            <Header showProfile showBalance />
             <main className="grow flex flex-col items-center justify-center">
 
             </main>

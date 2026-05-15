@@ -24,10 +24,26 @@ const regUser = async (e: React.FormEvent) => {
         alert('Пользователь с таким логином уже существует')
     }
     else if(login != '' && password != '' && fullName != ''){
-        const {data, error} = await supabase
+        const {data: newUser, error: newError} = await supabase
         .from('Users')
         .insert({Login: login, Password: password, FullName: fullName, Role: 'Гость'})
+        .select()
+        .single()
 
+        if(newError){
+            alert('Ошибка регистрации' + newError.message)
+        }
+
+        if(newUser){
+            const{error: clientError} = await supabase
+            .from('Clients')
+            .insert({UserID: newUser.UserID, FullName: fullName})
+
+            if(clientError){
+                alert(console.error('Ошибка регистрации' + clientError.message))
+            }
+        }
+        
         alert('Вы зарегистрировались!')
         window.location.href = '/login'
     }
@@ -52,14 +68,14 @@ const togglePasswordVisibility = () => {
                             placeholder="Логин"
                             value={login}
                             onChange={(e) => setLogin(e.target.value)}
-                            className="outline-none focus:border-blue-500 focus:scale-110 p-2 border border-gray-300 rounded-lg transition-all ease-in-out duration-300"
+                            className="bg-gray-900 outline-none focus:border-blue-500 focus:scale-110 p-2 border border-gray-300 rounded-lg transition-all ease-in-out duration-300"
                         />
                         <input
                             type={showPassword ? 'text' : 'password'}
                             placeholder="Пароль"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="outline-none focus:border-blue-500 focus:scale-105 p-2 border border-gray-300 rounded-lg transition-all ease-in-out duration-300"
+                            className="bg-gray-900 outline-none focus:border-blue-500 focus:scale-105 p-2 border border-gray-300 rounded-lg transition-all ease-in-out duration-300"
                         />
                         <button
                             type="button"
@@ -73,7 +89,7 @@ const togglePasswordVisibility = () => {
                             placeholder="ФИО"
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
-                            className="outline-none focus:border-blue-500 focus:scale-110 p-2 border border-gray-300 rounded-lg transition-all ease-in-out duration-300"
+                            className="bg-gray-900 outline-none focus:border-blue-500 focus:scale-110 p-2 border border-gray-300 rounded-lg transition-all ease-in-out duration-300"
                         />
                         <button
                             onClick={regUser}
